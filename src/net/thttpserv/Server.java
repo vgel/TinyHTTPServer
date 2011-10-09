@@ -48,6 +48,7 @@ public class Server {
 				Entry<String, String> ent = iter.next();
 				System.out.printf("%s : %s\n", ent.getKey(), ent.getValue());
 			}
+			System.exit(0);
 		}
 		try{
 			verbose = Integer.parseInt(argm.get("-v"));
