@@ -29,9 +29,11 @@ Next, call Server.setFactory(new MyFactory(...)). Finally, start the server by c
 -help output -- reference
 =========================
 
--help    : print this help message and quit
--threads : max number of threads to pool
--port    : port to run server on - must be above 1000 or running as root on linux
--ip      : ip to run server on
--ssl     : use SSL sockets
--v       : 0=nothing 1=verbose 2=debug
+    -help    : print this help message and quit
+    -threads : max number of threads to pool
+    -port    : port to run server on - must be above 1000 or running as root  on linux
+    -ip      : ip to run server on
+    -ssl     : use SSL sockets
+    -v       : 0=nothing 1=verbose 2=debug
+
+example: `java net.thttpserv.Server -ip 127.0.0.1 -port 8080 -v 1 -threads 15`
