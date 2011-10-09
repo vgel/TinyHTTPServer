@@ -55,6 +55,7 @@ public class Server {
 		} catch (Exception e){
 			//oh god wat do
 			System.err.println("Bad -v argument, defaulting to 1 (verbose). Try -help");
+			verbose = 1;
 		}
 		boolean ssl = argm.containsKey("-ssl");
 		String ip = argm.get("-ip");
