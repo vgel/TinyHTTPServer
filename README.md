@@ -18,4 +18,20 @@ Next, create two classes: a class extending ConnectionHandler and a "Factory" cl
     MyFactory extends HandlerCreator  
     MyHandler extends ConnectionHandler
 
-Next, call Server.setFactoy(new Myfactory(...)). Finally, start the server by calling server.main(String[]). Make sure to pass on any args you didn't use!
+Next, call Server.setFactory(new MyFactory(...)). Finally, start the server by calling Server.main(String[]). Make sure to pass on any args you didn't use!
+
+    //setting a custom factory
+    public static void main(String[] args){
+        Server.setFactory(new MyFactory());
+	Server.main(args);
+    }
+
+-help output -- reference
+=========================
+
+-help    : print this help message and quit
+-threads : max number of threads to pool
+-port    : port to run server on - must be above 1000 or running as root on linux
+-ip      : ip to run server on
+-ssl     : use SSL sockets
+-v       : 0=nothing 1=verbose 2=debug
