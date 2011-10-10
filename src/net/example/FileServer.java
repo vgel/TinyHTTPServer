@@ -27,8 +27,9 @@ public class FileServer extends ConnectionHandler {
 		Server.log(2, "FileServer handling GET");
 		response.setCode(200);
 		response.setCodeString("OK");
+		String mimeType = "text/plain";
 		try {
-			Server.readFile(request, response);
+			mimeType = Server.readFile(request, response);
 		} catch (IOException e) {
 			response.setCode(404);
 			response.setCodeString("Not Found");
@@ -37,13 +38,7 @@ public class FileServer extends ConnectionHandler {
 		response.getHeaders().put("Date", Server.getHTTPTimestamp());
 		response.getHeaders().put("Connection", "close");
 		response.getHeaders().put("Server", "TinyHTTPServer");
-		String s = request.getPath().getPath();
-		if (s.endsWith(".html"))
-			response.getHeaders().put("Content-Type", "text/html");
-		else if (s.endsWith(".png"))
-			response.getHeaders().put("Content-Type", "image/png");
-		else
-			response.getHeaders().put("Content-Type", "text/plain");
+		response.getHeaders().put("Content-Type", mimeType);
 		return response;
 	}
 

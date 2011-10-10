@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 
 import javax.net.ServerSocketFactory;
 import javax.net.ssl.SSLServerSocketFactory;
+import javax.activation.MimetypesFileTypeMap;
 
 public class Server {
 	public static final String VERSION = "v0.01";
@@ -123,14 +124,15 @@ public class Server {
 	}	
 	
 	
-	
-	public static void readFile(Request req, Response resp) throws IOException {
+	static MimetypesFileTypeMap mimeTypes = new MimetypesFileTypeMap();
+	public static String readFile(Request req, Response resp) throws IOException {
 		File f = new File(new File(".").getAbsolutePath() + req.path.getPath());
 		System.out.println(f.getAbsolutePath());
 		DataInputStream data = new DataInputStream(new FileInputStream(f));
 		byte[] file = new byte[(int)f.length()];
 		data.read(file);
 		resp.setBody(file);
+		return java.net.URLConnection.getFileNameMap().getContentTypeFor(f.getAbsolutePath());
 	}
 	
 	static private HashMap<String, String> parseArgs(String[] args, Object...flags){
